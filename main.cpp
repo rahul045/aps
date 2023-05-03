@@ -271,8 +271,7 @@ void numberOfFlights(int source, int destination)
     std::cout << "Numbers of flights available from source to destination are: " << ans << std::endl;
 }
 
-// Floyd Warshall And Dfs
-
+// Floyd Warshall And DFS
 void computeLPSArray(std::string &pat, int M, std::vector<int> &lps);
 
 // Prints occurrences of txt[] in pat[]
@@ -352,10 +351,9 @@ void computeLPSArray(std::string &pat, int M, std::vector<int> &lps)
 
 std::string str = "";
 std::vector<std::vector<int>> min_price;
+
 void dfs(int src, int money, std::vector<int> &vis, std::vector<int> &p)
 {
-
-    // std::cout << money << " SDS " << src << std::endl;
     std::map<std::string, int> m;
     bool flag = 0;
     for (int j = 0; j < CITIES; j++)
@@ -411,14 +409,13 @@ void dfs(int src, int money, std::vector<int> &vis, std::vector<int> &p)
                 }
             }
         }
-
         return;
     }
 }
 
 void max_dist(int source, int money)
 {
-    std::vector<std::vector<int>> min_price;
+    // std::vector<std::vector<int>> min_price;
     for (int k = 0; k < CITIES; k++)
     {
         for (int i = 0; i < CITIES; i++)
@@ -439,15 +436,7 @@ void max_dist(int source, int money)
             min_price.push_back(v);
         }
     }
-    // for (int i = 0; i < CITIES; i++)
-    // {
 
-    //     for (int j = 0; j < CITIES; j++)
-    //     {
-    //         std::cout << min_price[i][j] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
     std::vector<int> p, vis(CITIES, -1);
     int i = source;
     int temp;
@@ -563,6 +552,17 @@ int main()
             }
 
             case 5: {
+                int source, budget;
+
+                std::cout << "fms> Enter source airport number: ";
+                std::cin >> source;
+                if (airports.find(source) == airports.end()) {
+                    std::cout << "[-] Invalid airport number, use option 1 to check valid numbers.";
+                }
+
+                std::cout << "fms> Enter budget amount: ";
+                std::cin >> budget;
+                max_dist(source, budget);
                 break;
             }
 
