@@ -12,52 +12,52 @@
 
 // Order of airports
 std::map<int, std::pair<std::string, std::string>> airports = {
-    {0,     std::make_pair("DEL", "Delhi")},
-    {1,     std::make_pair("BOM", "Mumbai")},
-    {2,     std::make_pair("BLR", "Bangalore")},
-    {3,     std::make_pair("CCU", "Kolkata")},
-    {4,     std::make_pair("GOI", "Goa")},
-    {5,     std::make_pair("LKO", "Lucknow")},
-    {6,     std::make_pair("HYD", "Hyderabad")},
-    {7,     std::make_pair("MAA", "Chennai")},
-    {8,     std::make_pair("AMD", "Ahemdabad")},
-    {9,     std::make_pair("GAU", "Guwahati")},
-    {10,    std::make_pair("SXR", "Srinagar")},
-    {11,    std::make_pair("IDR", "Indore")},
+    {0, std::make_pair("DEL", "Delhi")},
+    {1, std::make_pair("BOM", "Mumbai")},
+    {2, std::make_pair("BLR", "Bangalore")},
+    {3, std::make_pair("CCU", "Kolkata")},
+    {4, std::make_pair("GOI", "Goa")},
+    {5, std::make_pair("LKO", "Lucknow")},
+    {6, std::make_pair("HYD", "Hyderabad")},
+    {7, std::make_pair("MAA", "Chennai")},
+    {8, std::make_pair("AMD", "Ahemdabad")},
+    {9, std::make_pair("GAU", "Guwahati")},
+    {10, std::make_pair("SXR", "Srinagar")},
+    {11, std::make_pair("IDR", "Indore")},
 };
 
 // Distances between airports is in km
 std::vector<std::vector<int>> distance = {
-/*  DEL     BOM     BLR     CCU     GOI     LKO     HYD     MAA     AMD     GAU     SXR     IDR */
-    {0,     1137,   1740,   1305,   1515,   419,    1255,   1757,   775,    1457,   643,    670},   // DEL
-    {1137,  0,      842,    1652,   435,    1190,   617,    1029,   441,    2079,   1674,   507},   // BOM
-    {1740,  842,    0,      1560,   464,    1578,   455,    284,    1220,   2075,   2358,   1100},  // BLR
-    {1305,  1652,   1560,   0,      1709,   886,    1180,   1366,   1617,   496,    1831,   1286},  // CCU
-    {1515,  435,    464,    1709,   0,      1466,   530,    713,    871,    2192,   2083,   846},   // GOI
-    {419,   1190,   1578,   886,    1466,   0,      1075,   1529,   942,    1074,   995,    681},   // LKO
-    {1255,  617,    455,    1180,   530,    1075,   0,      521,    876,    1677,   2780,   652},   // HYD
-    {1757,  1029,   284,    1366,   713,    1529,   521,    0,      1371,   1885,   2394,   1172},  // MAA
-    {775,   441,    1220,   1617,   871,    942,    876,    1371,   0,      1961,   1395,   334},   // AMD
-    {1457,  2079,   2075,   496,    2192,   1074,   1677,   1885,   1961,   0,      1846,   2114},  // GAU
-    {643,   1674,   2358,   1831,   2083,   995,    2780,   2394,   1395,   1846,   0,      1261},  // SXR
-    {670,   507,    1100,   1286,   846,    681,    652,    1172,   334,    2114,   1261,   0}      // IDR
+    /*  DEL     BOM     BLR     CCU     GOI     LKO     HYD     MAA     AMD     GAU     SXR     IDR */
+    {0, 1137, 1740, 1305, 1515, 419, 1255, 1757, 775, 1457, 643, 670},    // DEL
+    {1137, 0, 842, 1652, 435, 1190, 617, 1029, 441, 2079, 1674, 507},     // BOM
+    {1740, 842, 0, 1560, 464, 1578, 455, 284, 1220, 2075, 2358, 1100},    // BLR
+    {1305, 1652, 1560, 0, 1709, 886, 1180, 1366, 1617, 496, 1831, 1286},  // CCU
+    {1515, 435, 464, 1709, 0, 1466, 530, 713, 871, 2192, 2083, 846},      // GOI
+    {419, 1190, 1578, 886, 1466, 0, 1075, 1529, 942, 1074, 995, 681},     // LKO
+    {1255, 617, 455, 1180, 530, 1075, 0, 521, 876, 1677, 2780, 652},      // HYD
+    {1757, 1029, 284, 1366, 713, 1529, 521, 0, 1371, 1885, 2394, 1172},   // MAA
+    {775, 441, 1220, 1617, 871, 942, 876, 1371, 0, 1961, 1395, 334},      // AMD
+    {1457, 2079, 2075, 496, 2192, 1074, 1677, 1885, 1961, 0, 1846, 2114}, // GAU
+    {643, 1674, 2358, 1831, 2083, 995, 2780, 2394, 1395, 1846, 0, 1261},  // SXR
+    {670, 507, 1100, 1286, 846, 681, 652, 1172, 334, 2114, 1261, 0}       // IDR
 };
 
 // Prices are in rupees
 std::vector<std::vector<int>> price = {
-/*  DEL     BOM     BLR     CCU     GOI     LKO     HYD     MAA     AMD     GAU     SXR     IDR */
-    {0,     5297,   5176,   5880,   4788,   3407,   4788,   5283,   2625,   6109,   8709,   4016},  // DEL
-    {5288,  0,      3346,   3220,   2795,   8485,   3225,   3220,   2606,   8474,   15731,  9614},  // BOM
-    {5386,  2919,   0,      8809,   3612,   8641,   4037,   5963,   5339,   5867,   24360,  9974},  // BLR
-    {6451,  7291,   9002,   0,      11527,  9534,   10341,  9444,   9721,   12555,  25451,  9480},  // CCU
-    {5101,  3237,   2922,   11269,  0,      8476,   6371,   8478,   7684,   8089,   23782,  9216},  // GOI
-    {2712,  7143,   7295,   8277,   7993,   0,      9342,   7242,   9574,   9164,   21917,  6093},  // LKO
-    {6406,  3933,   4285,   10602,  9162,   9818,   0,      6946,   6363,   9402,   25589,  11819}, // HYD
-    {5276,  3451,   6936,   9535,   8611,   7841,   6784,   0,      5613,   11610,  24293,  9908},  // MAA
-    {4279,  2837,   5103,   7887,   7502,   5355,   5706,   5559,   0,      9991,   22780,  8394},  // AMD
-    {6459,  8059,   6389,   12514,  10819,  9274,   9674,   11114,  11104,  0,      24079,  9754},  // GAU
-    {9727,  16182,  20730,  21589,  20043,  18071,  21074,  20730,  22963,  19928,  0,      19094}, // SXR
-    {4561,  9648,   9790,   9113,   9139,   6677,   10730,  9422,   12079,  9608,   23062,  0}      // IDR
+    /*  DEL     BOM     BLR     CCU     GOI     LKO     HYD     MAA     AMD     GAU     SXR     IDR */
+    {0, 5297, 5176, 5880, 4788, 3407, 4788, 5283, 2625, 6109, 8709, 4016},           // DEL
+    {5288, 0, 3346, 3220, 2795, 8485, 3225, 3220, 2606, 8474, 15731, 9614},          // BOM
+    {5386, 2919, 0, 8809, 3612, 8641, 4037, 5963, 5339, 5867, 24360, 9974},          // BLR
+    {6451, 7291, 9002, 0, 11527, 9534, 10341, 9444, 9721, 12555, 25451, 9480},       // CCU
+    {5101, 3237, 2922, 11269, 0, 8476, 6371, 8478, 7684, 8089, 23782, 9216},         // GOI
+    {2712, 7143, 7295, 8277, 7993, 0, 9342, 7242, 9574, 9164, 21917, 6093},          // LKO
+    {6406, 3933, 4285, 10602, 9162, 9818, 0, 6946, 6363, 9402, 25589, 11819},        // HYD
+    {5276, 3451, 6936, 9535, 8611, 7841, 6784, 0, 5613, 11610, 24293, 9908},         // MAA
+    {4279, 2837, 5103, 7887, 7502, 5355, 5706, 5559, 0, 9991, 22780, 8394},          // AMD
+    {6459, 8059, 6389, 12514, 10819, 9274, 9674, 11114, 11104, 0, 24079, 9754},      // GAU
+    {9727, 16182, 20730, 21589, 20043, 18071, 21074, 20730, 22963, 19928, 0, 19094}, // SXR
+    {4561, 9648, 9790, 9113, 9139, 6677, 10730, 9422, 12079, 9608, 23062, 0}         // IDR
 };
 
 std::vector<std::vector<int>> flights = {
@@ -165,7 +165,7 @@ bool isPath(int s, int d, std::vector<int> &p, int *mn)
     }
     return flag;
 }
-
+// Edmond Karp(Network Flow)
 void numberOfFlights(int source, int destination)
 {
     std::vector<int> p(CITIES, -1);
@@ -193,9 +193,83 @@ void numberOfFlights(int source, int destination)
     }
     std::cout << "Numbers of flights: " << ans << std::endl;
 }
+// Floyd Warshall
+std::vector<std::vector<int>> min_price;
+void max_dist(int source, int money)
+{
+    for (int k = 0; k < CITIES; k++)
+    {
+        for (int i = 0; i < CITIES; i++)
+        {
+            std::vector<int> v;
+            for (int j = 0; j < CITIES; j++)
+            {
+                int temp = price[i][k] + price[k][j];
+                if (temp < price[i][j])
+                {
+                    v.push_back(temp);
+                }
+                else
+                {
+                    v.push_back(price[i][j]);
+                }
+            }
+            min_price.push_back(v);
+        }
+    }
+    // for (int i = 0; i < CITIES; i++)
+    // {
+
+    //     for (int j = 0; j < CITIES; j++)
+    //     {
+    //         std::cout << min_price[i][j] << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    std::vector<int> p;
+    int i = source;
+    int temp;
+    int j;
+    p.push_back(i);
+    while (money && i < CITIES)
+    {
+        int mini = INT_MAX;
+        for (j = i + 1; j < CITIES; j++)
+        {
+            if (mini > min_price[i][j])
+            {
+                mini = min_price[i][j];
+                temp = j;
+            }
+        }
+        if (money >= mini)
+        {
+            money -= mini;
+            // std::cout << "jbj " << temp << " jbj" << std::endl;
+            p.push_back(temp);
+            i = temp;
+        }
+        else
+        {
+            break;
+        }
+    }
+    for (int i = 0; i < p.size(); i++)
+    {
+        std::string s = airports[p[i]].second;
+        std::cout << s;
+        if (i != p.size() - 1)
+        {
+            std::cout << " -> ";
+        }
+    }
+    std::cout << std::endl;
+    std::cout << "Money Left: Rs " << money << std::endl;
+}
 
 int main()
 {
-    shortestPath(2, 10);
+    // shortestPath(2, 10);
+    max_dist(2, 10000);
     return 0;
 }
