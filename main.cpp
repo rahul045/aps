@@ -193,8 +193,151 @@ void numberOfFlights(int source, int destination)
     }
     std::cout << "Numbers of flights: " << ans << std::endl;
 }
-// Floyd Warshall
+// Floyd Warshall And Dfs
+
+void computeLPSArray(std::string &pat, int M, std::vector<int> &lps);
+
+// Prints occurrences of txt[] in pat[]
+bool KMPSearch(std::string &pat, std::string &txt)
+{
+    int M = pat.length();
+    int N = txt.length();
+
+    // create lps[] that will hold the longest prefix suffix
+    // values for pattern
+    std::vector<int> lps(M);
+
+    // Preprocess the pattern (calculate lps[] array)
+    computeLPSArray(pat, M, lps);
+
+    int i = 0; // index for txt[]
+    int j = 0; // index for pat[]
+    while ((N - i) >= (M - j))
+    {
+        if (pat[j] == txt[i])
+        {
+            j++;
+            i++;
+        }
+
+        if (j == M)
+        {
+            return 1;
+            j = lps[j - 1];
+        }
+
+        // mismatch after j matches
+        else if (i < N && pat[j] != txt[i])
+        {
+            // Do not match lps[0..lps[j-1]] characters,
+            // they will match anyway
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i = i + 1;
+        }
+    }
+    return 0;
+}
+
+// Fills lps[] for given pattern pat[0..M-1]
+void computeLPSArray(std::string &pat, int M, std::vector<int> &lps)
+{
+    // length of the previous longest prefix suffix
+    int len = 0;
+
+    lps[0] = 0;
+    int i = 1;
+    while (i < M)
+    {
+        if (pat[i] == pat[len])
+        {
+            len++;
+            lps[i] = len;
+            i++;
+        }
+        else
+        {
+
+            if (len != 0)
+            {
+                len = lps[len - 1];
+            }
+            else
+            {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+
+std::string str = "";
 std::vector<std::vector<int>> min_price;
+void dfs(int src, int money, std::vector<int> &vis, std::vector<int> &p)
+{
+
+    // std::cout << money << " SDS " << src << std::endl;
+    std::map<std::string, int> m;
+    bool flag = 0;
+    for (int j = 0; j < CITIES; j++)
+    {
+        if (vis[j] == -1 && flights[src][j] == 1 && money >= min_price[src][j])
+        {
+            p.push_back(j);
+            money -= min_price[src][j];
+            vis[j] = 1;
+            flag = 1;
+            dfs(j, money, vis, p);
+            vis[j] = -1;
+            money += min_price[src][j];
+            p.pop_back();
+            flag = 0;
+        }
+    }
+    if (money == 0 || flag == 0)
+    {
+        if (p.size() != 1)
+        {
+            std::string pat = "";
+            if (str == "")
+            {
+                for (int i = 0; i < p.size(); i++)
+                {
+
+                    str += p[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < p.size(); i++)
+                {
+
+                    pat += p[i];
+                }
+                bool r = KMPSearch(pat, str);
+                if (r == 0)
+                {
+                    str += pat;
+                    for (int i = 0; i < p.size(); i++)
+                    {
+                        std::string s = airports[p[i]].second;
+                        std::cout << s;
+                        if (i != p.size() - 1)
+                        {
+                            std::cout << " -> ";
+                        }
+                    }
+                    std::cout << std::endl;
+                    std::cout << "Money Left: Rs " << money << std::endl;
+                }
+            }
+        }
+
+        return;
+    }
+}
+
 void max_dist(int source, int money)
 {
     for (int k = 0; k < CITIES; k++)
@@ -226,50 +369,18 @@ void max_dist(int source, int money)
     //     }
     //     std::cout << std::endl;
     // }
-    std::vector<int> p;
+    std::vector<int> p, vis(CITIES, -1);
     int i = source;
     int temp;
     int j;
     p.push_back(i);
-    while (money && i < CITIES)
-    {
-        int mini = INT_MAX;
-        for (j = i + 1; j < CITIES; j++)
-        {
-            if (mini > min_price[i][j])
-            {
-                mini = min_price[i][j];
-                temp = j;
-            }
-        }
-        if (money >= mini)
-        {
-            money -= mini;
-            // std::cout << "jbj " << temp << " jbj" << std::endl;
-            p.push_back(temp);
-            i = temp;
-        }
-        else
-        {
-            break;
-        }
-    }
-    for (int i = 0; i < p.size(); i++)
-    {
-        std::string s = airports[p[i]].second;
-        std::cout << s;
-        if (i != p.size() - 1)
-        {
-            std::cout << " -> ";
-        }
-    }
-    std::cout << std::endl;
-    std::cout << "Money Left: Rs " << money << std::endl;
+    vis[i] = 1;
+    dfs(source, money, vis, p);
 }
 
 int main()
 {
     // shortestPath(2, 10);
-    max_dist(2, 10000);
+    max_dist(3, 10000);
     return 0;
 }
